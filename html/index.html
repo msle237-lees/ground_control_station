@@ -1,13 +1,157 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="../css/index.css" />
     <title>Hello from Electron renderer!</title>
-    <link rel="stylesheet" href="css/index.css" />
   </head>
   <body>
-    <div class="header">
-      <h1>Hello from Electron renderer!</h1>
+    <div class="title">
+      <h1>KSU AUV Team Ground Control Station</h1>
+    </div>
+    <div class="content">
+      <div class="data-view">
+        <h2>Data View</h2>
+        <div class="str-data">
+          <div class="data-row">
+            <div class="data-element">
+              <div class="data-label">Depth:</div>
+              <div class="data-value" id="depth">0</div>
+              <div class="data-unit">m</div>
+            </div>
+            <div class="data-element">
+              <div class="data-label">Humidity:</div>
+              <div class="data-value" id="humidity">0</div>
+              <div class="data-unit">%</div>
+            </div>
+          </div>
+          <div class="data-row">
+            <div class="data-element">
+              <div class="data-label">Orin Temp:</div>
+              <div class="data-value" id="orin-temp">0</div>
+              <div class="data-unit">F</div>
+            </div>
+            <div class="data-element">
+              <div class="data-label">Tube Temp:</div>
+              <div class="data-value" id="tube-temp">0</div>
+              <div class="data-unit">F</div>
+            </div>
+          </div>
+          <div class="data-row">
+            <div class="data-label">Battery 1:</div>
+            <div class="data-value" id="batt1v">0</div>
+            <div class="data-unit">V</div>
+            <div class="data-value" id="batt1c">0</div>
+            <div class="data-unit">A</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label">Battery 2:</div>
+            <div class="data-value" id="batt2v">0</div>
+            <div class="data-unit">V</div>
+            <div class="data-value" id="batt2c">0</div>
+            <div class="data-unit">A</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label">Battery 3:</div>
+            <div class="data-value" id="batt3v">0</div>
+            <div class="data-unit">V</div>
+            <div class="data-value" id="batt3c">0</div>
+            <div class="data-unit">A</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label">Battery 4:</div>
+            <div class="data-value" id="batt4v">0</div>
+            <div class="data-unit">V</div>
+            <div class="data-value" id="batt4c">0</div>
+            <div class="data-unit">A</div>
+          </div>
+          <div class="data-row">
+            <div class="data-element">
+              <div class="data-label">Motor 1:</div>
+              <div class="data-value" id="m1pwm">0</div>
+            </div>
+            <div class="data-element">
+              <div class="data-label">Motor 2:</div>
+              <div class="data-value" id="m2pwm">0</div>
+            </div>
+          </div>
+          <div class="data-row">
+            <div class="data-element">
+              <div class="data-label">Motor 3:</div>
+              <div class="data-value" id="m3pwm">0</div>
+            </div>
+            <div class="data-element">
+              <div class="data-label">Motor 4:</div>
+              <div class="data-value" id="m4pwm">0</div>
+            </div>
+          </div>
+          <div class="data-row">
+            <div class="data-element">
+              <div class="data-label">Motor 5:</div>
+              <div class="data-value" id="m5pwm">0</div>
+            </div>
+            <div class="data-element">
+              <div class="data-label">Motor 6:</div>
+              <div class="data-value" id="m6pwm">0</div>
+            </div>
+          </div>
+          <div class="data-row">
+            <div class="data-element">
+              <div class="data-label">Motor 7:</div>
+              <div class="data-value" id="m7pwm">0</div>
+            </div>
+            <div class="data-element">
+              <div class="data-label">Motor 8:</div>
+              <div class="data-value" id="m8pwm">0</div>
+            </div>
+          </div>
+          <div class="data-row">
+            <div class="data-element">
+              <div class="data-label">Servo 1:</div>
+              <div class="data-value" id="s1pwm">0</div>
+            </div>
+            <div class="data-element">
+              <div class="data-label">Servo 2:</div>
+              <div class="data-value" id="s2pwm">0</div>
+            </div>
+          </div>
+        </div>
+        <div class="sonar-grid">
+          <h4>Sonar Grid</h4>
+        </div>
+      </div>
+      <div class="middle">
+        <img src="../imgs/dummy.png" alt="dummy" />
+        <div class="button-grid">
+          <button onclick="start_sub()">Start Sub</button>
+          <button onclick="stop_sub()">Stop Cameras</button>
+          <button onclick="start_motors()">Start Motors</button>
+          <button onclick="stop_sensors()">Stop Sensors</button>
+          <button onclick="update_config()">Update Config</button>
+          <button onclick="stop_sub()">Stop Sub</button>
+          <button onclick="start_cam()">Start Cam</button>
+          <button onclick="stop_motors()">Stop Motors</button>
+          <button onclick="start_sensors()">Start Sensors</button>
+          <button onclick="open_config_folder()">Open Config Folder</button>
+        </div>
+      </div>
+      <div class="settings">
+        <h2>Settings</h2>
+        <div class="tabs">
+          <input type="radio" id="tab1" name="tab" checked>
+          <label for="tab1" class="tab-label">Tab 1</label>
+      
+          <input type="radio" id="tab2" name="tab">
+          <label for="tab2" class="tab-label">Tab 2</label>
+      
+          <input type="radio" id="tab3" name="tab">
+          <label for="tab3" class="tab-label">Tab 3</label>
+      
+          <div class="tab-content" id="content1">Content for Tab 1...</div>
+          <div class="tab-content" id="content2">Content for Tab 2...</div>
+          <div class="tab-content" id="content3">Content for Tab 3...</div>
+        </div>
+      </div>
     </div>
   </body>
-  <script src="js/renderer.js"></script>
+  <script src="../js/renderer.js"></script>
 </html>
